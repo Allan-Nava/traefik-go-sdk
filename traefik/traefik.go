@@ -12,6 +12,7 @@ type ITraefikClient interface {
 	//
 	HealthCheck() error
 	IsDebug() bool
+	GetHttpRouters() (*resty.Response, error)
 	//
 }
 
