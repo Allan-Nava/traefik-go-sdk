@@ -1,6 +1,6 @@
 # Traefik go sdk
 [![Go Reference](https://pkg.go.dev/badge/github.com/Allan-Nava/traefik-go-sdk.svg)](https://pkg.go.dev/github.com/Allan-Nava/traefik-go-sdk)
-
+[![Go build](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml/badge.svg)](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml)
 
 The Traefik Go SDK provides a convenient way to interact with Traefik, a modern reverse proxy and load balancer. This SDK is designed to simplify the integration of Traefik into your Go applications.
 
