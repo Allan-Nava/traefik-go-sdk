@@ -17,6 +17,7 @@ type ITraefikClient interface {
 	IsDebug() bool
 	GetHttpRouters() (*resty.Response, error)
 	GetHttpRouter(routerName string) (*resty.Response, error)
+	GetHttpServices() (*resty.Response, error)
 	//
 }
 
