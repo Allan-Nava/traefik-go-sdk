@@ -3,9 +3,9 @@ package traefik
 import "github.com/go-resty/resty/v2"
 
 type traefikSdk struct {
-	BaseUrl        string
-	restClient *resty.Client
-	debug      bool
+	BaseUrl        	string
+	restClient 		*resty.Client
+	debug      		bool
 }
 
 type ITraefikClient interface {
@@ -13,6 +13,22 @@ type ITraefikClient interface {
 	HealthCheck() error
 	IsDebug() bool
 	//
+}
+
+// Builder is used to build a new haivision client
+func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
+	// init haivision
+	traefikClient := &traefikSdk{
+		Url:        url,
+		restClient: resty.New(),
+	}
+	//
+	if debug {
+		traefikClient.restClient.SetDebug(true)
+		traefikClient.debug = true
+	}
+	//
+	return traefikClient, nil
 }
 
 func (o *traefikSdk) HealthCheck() error {
