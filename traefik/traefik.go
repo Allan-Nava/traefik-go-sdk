@@ -22,6 +22,7 @@ type ITraefikClient interface {
 	GetTcpServices() (*resty.Response, error)
 	GetTcpRouters() (*resty.Response, error)
 	GetTcpRouter(name string) (*resty.Response, error)
+	GetUdpRouters() (*resty.Response, error)
 	//
 }
 
