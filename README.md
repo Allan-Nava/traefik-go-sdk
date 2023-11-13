@@ -23,7 +23,7 @@ Here is a simple example demonstrating how to use the Traefik Go SDK to update T
 
 ```
 
-For more detailed examples and API documentation, refer to the GoDoc.
+For more detailed examples and [API documentation](https://doc.traefik.io/traefik/operations/api/), refer to the GoDoc.
 
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
