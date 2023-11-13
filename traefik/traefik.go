@@ -1,6 +1,9 @@
 package traefik
 
-import "github.com/go-resty/resty/v2"
+import (
+	"log"
+	"github.com/go-resty/resty/v2"
+)
 
 type traefikSdk struct {
 	BaseUrl        	string
