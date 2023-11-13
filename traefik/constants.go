@@ -13,7 +13,10 @@ const (
 	UDP_ROUTERS 			= "/api/udp/routers" 		// --> //api/udp/routers	Lists all the UDP routers information.
 	UDP_SERVICES 			= "/api/udp/service" 		// --> /api/udp/services	Lists all the UDP services information.
 	ENTRYPOINTS 			= "/api/entrypoints" 		// --> /api/entrypoints	Lists all the entry points information.
+	OVERVIEW 				= "/api/overview"			// --> /api/overview Returns statistic information about http and tcp as well as enabled features and providers.
 	//
+	RAW_DATA 				= "/api/rawdata" 			// --> /api/rawdata	Returns information about dynamic configurations, errors, status and dependency relations.
+	API_VERSION 			= "/api/version" 			// --> /api/version	Returns information about Traefik version.
 )
 
 
@@ -45,6 +48,10 @@ var (
 	//
 	GET_UDP_SERVICE = func(name string ) string {
 		return UDP_SERVICES + "/" + name
+	}
+	//
+	GET_ENTRYPOINT = func(name string ) string {
+		return ENTRYPOINTS + "/" + name
 	}
 	//
 )
