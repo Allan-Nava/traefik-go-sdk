@@ -10,6 +10,15 @@ func (o *traefikSdk) GetHttpRouters() (*resty.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	//log.Println("GetRoutes ", resp)
+	return resp, nil
+}
+
+/*
+*/
+func (o *traefikSdk) GetHttpRouter(routerName string) (*resty.Response, error) {
+	resp, err := o.restyGet(GET_HTTP_ROUTER(routerName), nil)
+	if err != nil {
+		return nil, err
+	}
 	return resp, nil
 }
