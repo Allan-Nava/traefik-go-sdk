@@ -18,6 +18,7 @@ type ITraefikClient interface {
 	GetHttpRouters() (*resty.Response, error)
 	GetHttpRouter(routerName string) (*resty.Response, error)
 	GetHttpServices() (*resty.Response, error)
+	GetHttpMiddlewares() (*resty.Response, error)
 	//
 }
 
