@@ -15,7 +15,7 @@ func (o *traefikSdk) GetApiOverview() (*resty.Response, error) {
 
 /*
 */
-func (o *traefik) GetApiRawData() (*resty.Response, error) {
+func (o *traefikSdk) GetApiRawData() (*resty.Response, error) {
 	resp, err := o.restyGet(RAW_DATA, nil)
 	if err != nil {
 		return nil, err
@@ -25,7 +25,7 @@ func (o *traefik) GetApiRawData() (*resty.Response, error) {
 
 /*
 */
-func (o *traefik) GetApiVersion() (*resty.Response, error) {
+func (o *traefikSdk) GetApiVersion() (*resty.Response, error) {
 	resp, err := o.restyGet(API_VERSION, nil)
 	if err != nil {
 		return nil, err
