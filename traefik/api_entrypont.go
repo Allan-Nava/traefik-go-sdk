@@ -1,6 +1,6 @@
 package traefik
 
-
+import "github.com/go-resty/resty/v2"
 /*
 */
 func(o *traefikSdk) GetEntrypoints() (*resty.Response, error){
