@@ -31,3 +31,13 @@ func (o *traefikSdk) GetTcpRouter(name string) (*resty.Response, error) {
 	}
 	return resp, nil
 }
+/*
+*/
+func (o *traefikSdk) GetUdpService(name string) (*resty.Response, error){
+	resp, err := o.restyGet(GET_UDP_SERVICE(name), nil)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+
+}
