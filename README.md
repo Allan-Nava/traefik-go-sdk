@@ -17,7 +17,7 @@ To use the Traefik Go SDK in your project, you need to install it using the `go 
 go get github.com/Allan-Nava/traefik-go-sdk
 ```
 
-## Usage
+## Usage
 Here is a simple example demonstrating how to use the Traefik Go SDK to update Traefik's dynamic configuration:
 ```go
 
