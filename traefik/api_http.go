@@ -22,3 +22,26 @@ func (o *traefikSdk) GetHttpRouter(routerName string) (*resty.Response, error) {
 	}
 	return resp, nil
 }
+
+
+/*
+*/
+func (o *traefikSdk) GetHttpMiddlewares() (*resty.Response, error) {
+	//log.Println("GetRoutes ", deviceId)
+	resp, err := o.restyGet(HTTP_MIDDLEWARES, nil)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
+/*
+*/
+func (o *traefikSdk) GetHttpServices() (*resty.Response, error) {
+	//log.Println("GetRoutes ", deviceId)
+	resp, err := o.restyGet(HTTP_SERVICES, nil)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
