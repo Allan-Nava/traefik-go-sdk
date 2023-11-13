@@ -23,6 +23,10 @@ func (o *traefikSdk) HealthCheck() error {
 	return nil
 }
 
+func (o *traefikSdk) IsDebug() bool {
+	return o.debug
+}
+
 // Resty Methods
 
 func (o *traefikSdk) restyPost(url string, body interface{}) (*resty.Response, error) {
