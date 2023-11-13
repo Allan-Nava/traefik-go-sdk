@@ -28,7 +28,7 @@ import (
 
 func main() {
 	// Create a Traefik client
-	client, err := traefik.NewClient("http://traefik-api-url")
+	client, err := traefik.BuildTraefik("http://traefik-api-url")
 	if err != nil {
 		panic(err)
 	}
