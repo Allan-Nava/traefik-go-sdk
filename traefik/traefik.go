@@ -19,7 +19,7 @@ type ITraefikClient interface {
 func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
 	// init haivision
 	traefikClient := &traefikSdk{
-		Url:        url,
+		BaseUrl:        url,
 		restClient: resty.New(),
 	}
 	//
