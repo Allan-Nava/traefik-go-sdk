@@ -21,6 +21,19 @@ go get github.com/Allan-Nava/traefik-go-sdk
 Here is a simple example demonstrating how to use the Traefik Go SDK to update Traefik's dynamic configuration:
 ```go
 
+import (
+	"fmt"
+	"github.com/Allan-Nava/traefik-go-sdk"
+)
+
+func main() {
+	// Create a Traefik client
+	client, err := traefik.NewClient("http://traefik-api-url")
+	if err != nil {
+		panic(err)
+	}
+}
+
 ```
 
 For more detailed examples and [API documentation](https://doc.traefik.io/traefik/operations/api/), refer to the GoDoc.
