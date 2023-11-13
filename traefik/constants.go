@@ -39,4 +39,12 @@ var (
 		return TCP_MIDDLEWARES + "/" + name
 	}
 	//
+	GET_UDP_ROUTER = func(name string ) string {
+		return UDP_ROUTERS + "/" + name
+	}
+	//
+	GET_UDP_SERVICE = func(name string ) string {
+		return UDP_SERVICES + "/" + name
+	}
+	//
 )
