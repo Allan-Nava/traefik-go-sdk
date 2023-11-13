@@ -3,7 +3,7 @@ package traefik
 import "github.com/go-resty/resty/v2"
 
 type traefikSdk struct {
-	Url        string
+	BaseUrl        string
 	restClient *resty.Client
 	debug      bool
 }
@@ -16,7 +16,7 @@ type ITraefikClient interface {
 }
 
 func (o *traefikSdk) HealthCheck() error {
-	_, err := o.restyGet(o.Url, nil)
+	_, err := o.restyGet(o.BaseUrl, nil)
 	if err != nil {
 		return nil
 	}
