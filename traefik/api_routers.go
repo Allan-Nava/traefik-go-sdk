@@ -1,5 +1,7 @@
 package traefik
 
+import "github.com/go-resty/resty/v2"
+
 /*
 */
 func (o *traefikSdk) GetHttpRouters() (*resty.Response, error) {
