@@ -21,4 +21,9 @@ var (
 	GET_HTTP_MIDDLEWARE = func(middlewareName string) string {
 		return HTTP_MIDDLEWARES + "/" + middlewareName
 	}
+	//
+	GET_HTTP_TCP_ROUTER = func(name string ) string {
+		return HTTP_TCP_ROUTERS + "/" + name
+	}
+	//
 )
