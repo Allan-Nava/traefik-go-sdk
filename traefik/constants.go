@@ -17,6 +17,9 @@ const (
 	//
 	RAW_DATA 				= "/api/rawdata" 			// --> /api/rawdata	Returns information about dynamic configurations, errors, status and dependency relations.
 	API_VERSION 			= "/api/version" 			// --> /api/version	Returns information about Traefik version.
+	// Debug
+	DEBUG_VARS 				= "/debug/vars" 			// --> /debug/vars	See the expvar Go document
+	//
 )
 
 

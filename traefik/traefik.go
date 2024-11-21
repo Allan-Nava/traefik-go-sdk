@@ -88,8 +88,6 @@ func (o *traefikSdk) restyGet(url string, queryParams map[string]string) (*resty
 }
 
 
-
-
 func (o *traefikSdk) debugPrint(data interface{}) {
 	if o.debug {
 		log.Println(data)
