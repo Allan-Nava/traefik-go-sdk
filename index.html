@@ -97,6 +97,7 @@ footer p { margin: 0; }
       <a href="#features">Features</a>
       <a href="#installation">Installation</a>
       <a href="#usage">Usage</a>
+      <a href="#api-methods">API Methods</a>
       <a href="#documentation">Documentation</a>
       <a href="https://github.com/Allan-Nava/traefik-go-sdk" style="color: var(--muted);">GitHub</a>
     </nav>
@@ -135,21 +136,69 @@ footer p { margin: 0; }
   </section>
   <section id="usage">
     <h2><a class="anchor" href="#usage">Usage</a></h2>
-<p>Here is a simple example demonstrating how to use the Traefik Go SDK to update Traefik&#39;s dynamic configuration:</p>
-<pre><code class="language-go">
-import (
-    &quot;fmt&quot;
-    &quot;github.com/Allan-Nava/traefik-go-sdk&quot;
+<p>Here is a simple example demonstrating how to use the Traefik Go SDK:</p>
+<pre><code class="language-go">import (
+    &quot;github.com/Allan-Nava/traefik-go-sdk/traefik&quot;
 )
 
 func main() {
     // Create a Traefik client
-    client, err := traefik.BuildTraefik(&quot;http://traefik-api-url&quot;)
+    client, err := traefik.BuildTraefik(&quot;http://localhost:8080&quot;, false)
     if err != nil {
         panic(err)
     }
+
+    // Read router configuration
+    routers, _ := client.GetHttpRouters()
+    println(&quot;Routers:&quot;, routers.Status())
+
+    // Create a new router
+    newRouter := map[string]interface{}{
+        &quot;entryPoints&quot;: []string{&quot;web&quot;},
+        &quot;service&quot;:     &quot;my-service&quot;,
+        &quot;rule&quot;:        &quot;Host(`example.com`)&quot;,
+    }
+    resp, _ := client.CreateHttpRouter(&quot;my-router&quot;, newRouter)
+    println(&quot;Created:&quot;, resp.Status())
+
+    // Update router
+    updatedRouter := map[string]interface{}{
+        &quot;entryPoints&quot;: []string{&quot;web&quot;, &quot;websecure&quot;},
+        &quot;service&quot;:     &quot;my-service&quot;,
+        &quot;rule&quot;:        &quot;Host(`example.com`)&quot;,
+    }
+    client.UpdateHttpRouter(&quot;my-router&quot;, updatedRouter)
+
+    // Delete router
+    client.DeleteHttpRouter(&quot;my-router&quot;)
 }
 </code></pre>
+
+  </section>
+  <section id="api-methods">
+    <h2><a class="anchor" href="#api-methods">API Methods</a></h2>
+<h3>Read Operations</h3>
+<ul>
+<li><strong>HTTP Routers:</strong> <code>GetHttpRouters()</code>, <code>GetHttpRouter(name)</code></li>
+<li><strong>HTTP Services:</strong> <code>GetHttpServices()</code></li>
+<li><strong>HTTP Middlewares:</strong> <code>GetHttpMiddlewares()</code></li>
+<li><strong>TCP Routers:</strong> <code>GetTcpRouters()</code>, <code>GetTcpRouter(name)</code></li>
+<li><strong>TCP Services:</strong> <code>GetTcpServices()</code></li>
+<li><strong>UDP Routers:</strong> <code>GetUdpRouters()</code>, <code>GetUdpRouter(name)</code></li>
+<li><strong>UDP Services:</strong> <code>GetUdpServices()</code>, <code>GetUdpService(name)</code></li>
+<li><strong>Entry Points:</strong> <code>GetEntrypoints()</code></li>
+<li><strong>API Info:</strong> <code>GetApiOverview()</code>, <code>GetApiVersion()</code>, <code>GetApiRawData()</code></li>
+</ul>
+<h3>Write Operations</h3>
+<ul>
+<li><strong>HTTP Routers:</strong> <code>CreateHttpRouter(name, config)</code>, <code>UpdateHttpRouter(name, config)</code>, <code>DeleteHttpRouter(name)</code></li>
+<li><strong>HTTP Services:</strong> <code>CreateHttpService(name, config)</code>, <code>UpdateHttpService(name, config)</code>, <code>DeleteHttpService(name)</code></li>
+</ul>
+<h3>Utility Methods</h3>
+<ul>
+<li><strong>Health Check:</strong> <code>HealthCheck()</code> — Verify connectivity to Traefik API</li>
+<li><strong>Debug Mode:</strong> <code>IsDebug()</code> — Check if debug logging is enabled</li>
+</ul>
 <p>For more detailed examples and <a href="https://doc.traefik.io/traefik/operations/api/">API documentation</a>, refer to the GoDoc.</p>
 
   </section>
