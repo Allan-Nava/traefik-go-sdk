@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traefik go sdk — Go SDK for Traefik API</title>
+<meta name="description" content="[![Go Reference](https://pkg.go.dev/badge/github.com/Allan-Nava/traefik-go-sdk.svg)](https://pkg.go.dev/github.com/Allan-Nava/traefik-go-sdk) [![Go build](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml/badge.svg)](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml).">
+<link rel="canonical" href="https://allan-nava.github.io/traefik-go-sdk/">
+<meta name="theme-color" content="#1e40af" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traefik go sdk">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://allan-nava.github.io/traefik-go-sdk/">
+<meta property="og:title" content="Traefik go sdk — Go SDK for Traefik API">
+<meta property="og:description" content="[![Go Reference](https://pkg.go.dev/badge/github.com/Allan-Nava/traefik-go-sdk.svg)](https://pkg.go.dev/github.com/Allan-Nava/traefik-go-sdk) [![Go build](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml/badge.svg)](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml).">
+<meta property="og:image" content="https://allan-nava.github.io/traefik-go-sdk/assets/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Traefik go sdk — Go SDK for Traefik API">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Traefik go sdk — Go SDK for Traefik API">
+<meta name="twitter:description" content="[![Go Reference](https://pkg.go.dev/badge/github.com/Allan-Nava/traefik-go-sdk.svg)](https://pkg.go.dev/github.com/Allan-Nava/traefik-go-sdk) [![Go build](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml/badge.svg)](https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml).">
+<meta name="twitter:image" content="https://allan-nava.github.io/traefik-go-sdk/assets/og-image.png">
+<meta name="twitter:image:alt" content="Traefik go sdk — Go SDK for Traefik API">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-weight='bold' font-family='system-ui'>T</text></svg>">
+<script type="application/ld+json">${jsonLd}</script>
+<style>
+:root {
+  --bg: #f8fafc; --panel: #fff; --line: #e2e8f0; --ink: #0f172a; --muted: #475569;
+  --accent: #1e40af; --accent-soft: #eff6ff; --code-bg: #f1f5f9;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a; --panel: #1e293b; --line: #334155; --ink: #f1f5f9; --muted: #94a3b8;
+    --accent: #3b82f6; --accent-soft: #1e3a8a; --code-bg: #1e293b;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+code { font-family: var(--mono); font-size: .9em; }
+:not(pre) > code { background: var(--code-bg); padding: .2em .4em; border-radius: 4px; }
+pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 1rem; overflow-x: auto; font-size: .85rem; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+
+header.top {
+  position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+header.top .wrap { display: flex; align-items: center; gap: 1.5rem; height: 3.5rem; }
+.brand { display: inline-flex; align-items: center; font-weight: 600; letter-spacing: .05em; color: var(--ink); text-decoration: none; }
+.brand span { color: var(--accent); }
+header.top nav { margin-left: auto; display: flex; gap: 1rem; flex-wrap: wrap; }
+header.top nav a { color: var(--muted); text-decoration: none; font-size: .9rem; }
+header.top nav a:hover { color: var(--ink); }
+
+.hero { padding: 4rem 0 2rem; }
+.eyebrow { display: inline-block; font: 600 .7rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border-radius: 99px; padding: .4rem .8rem; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); line-height: 1.1; margin: 0 0 1rem; letter-spacing: -.02em; }
+.lede { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--muted); max-width: 45rem; margin: 0 0 1.5rem; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.cta { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.cta a { display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; font-size: .9rem; font-weight: 550; padding: .55rem 1rem; border-radius: 6px; border: 1px solid var(--line); color: var(--ink); background: var(--panel); }
+.cta a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.cta a:hover { border-color: var(--accent); }
+
+section { padding: 3rem 0; border-top: 1px solid var(--line); }
+section h2 { font-size: 1.4rem; letter-spacing: -.015em; margin: 0 0 1rem; }
+section h2 .anchor { color: inherit; text-decoration: none; }
+section h2 .anchor:hover::after { content: " #"; color: var(--accent); }
+section h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; }
+section p, section li { max-width: 45rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .9rem; display: block; overflow-x: auto; }
+th, td { text-align: left; padding: .5rem .75rem; border-bottom: 1px solid var(--line); }
+th { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+blockquote { margin: 1rem 0; padding: .1rem 0 .1rem 1rem; border-left: 3px solid var(--accent); color: var(--muted); }
+
+footer { padding: 3rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+footer p { margin: 0; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#" class="brand">T<span>raefik</span> Go SDK</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#installation">Installation</a>
+      <a href="#usage">Usage</a>
+      <a href="https://github.com/Allan-Nava/traefik-go-sdk" style="color: var(--muted);">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Traefik SDK</div>
+      <h1>Traefik go sdk</h1>
+      <p class="lede"><a href="https://pkg.go.dev/github.com/Allan-Nava/traefik-go-sdk"><img src="https://pkg.go.dev/badge/github.com/Allan-Nava/traefik-go-sdk.svg" alt="Go Reference"></a>
+<a href="https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml"><img src="https://github.com/Allan-Nava/traefik-go-sdk/actions/workflows/go-build.yml/badge.svg" alt="Go build"></a></p>
+      <div class="cta">
+        <a href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/README.md" class="primary">View on GitHub</a>
+        <a href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/docs/guides/01-installation.md">Get Started</a>
+        <a href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/docs/index.md">Documentation</a>
+      </div>
+      <div><p>The Traefik Go SDK provides a convenient way to interact with Traefik, a modern reverse proxy and load balancer. This SDK is designed to simplify the integration of Traefik into your Go applications.</p>
+</div>
+    </div>
+  <section id="features">
+    <h2><a class="anchor" href="#features">Features</a></h2>
+<ul>
+<li><strong>Dynamic Configuration:</strong> Easily configure and manage Traefik&#39;s dynamic configuration from your Go application.</li>
+<li><strong>Programmatic Interaction:</strong> Interact with Traefik programmatically, making it easier to automate configuration changes.</li>
+</ul>
+
+  </section>
+  <section id="installation">
+    <h2><a class="anchor" href="#installation">Installation</a></h2>
+<p>To use the Traefik Go SDK in your project, you need to install it using the <code>go get</code> command:</p>
+<pre><code class="language-bash">go get github.com/Allan-Nava/traefik-go-sdk
+</code></pre>
+
+  </section>
+  <section id="usage">
+    <h2><a class="anchor" href="#usage">Usage</a></h2>
+<p>Here is a simple example demonstrating how to use the Traefik Go SDK to update Traefik&#39;s dynamic configuration:</p>
+<pre><code class="language-go">
+import (
+    &quot;fmt&quot;
+    &quot;github.com/Allan-Nava/traefik-go-sdk&quot;
+)
+
+func main() {
+    // Create a Traefik client
+    client, err := traefik.BuildTraefik(&quot;http://traefik-api-url&quot;)
+    if err != nil {
+        panic(err)
+    }
+}
+</code></pre>
+<p>For more detailed examples and <a href="https://doc.traefik.io/traefik/operations/api/">API documentation</a>, refer to the GoDoc.</p>
+
+  </section>
+  <section id="contributing">
+    <h2><a class="anchor" href="#contributing">Contributing</a></h2>
+<p>Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.</p>
+
+  </section>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p><strong>Traefik Go SDK</strong> — v0.2.0 — <a href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/LICENSE">MIT License</a></p>
+  <p>Built with <a href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/site/build.mjs">Node.js</a>. Content from <a href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/README.md">README.md</a>.</p>
+</footer>
+
+</body>
+</html>
