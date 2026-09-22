@@ -97,6 +97,7 @@ footer p { margin: 0; }
       <a href="#features">Features</a>
       <a href="#installation">Installation</a>
       <a href="#usage">Usage</a>
+      <a href="#documentation">Documentation</a>
       <a href="https://github.com/Allan-Nava/traefik-go-sdk" style="color: var(--muted);">GitHub</a>
     </nav>
   </div>
@@ -150,6 +151,43 @@ func main() {
 }
 </code></pre>
 <p>For more detailed examples and <a href="https://doc.traefik.io/traefik/operations/api/">API documentation</a>, refer to the GoDoc.</p>
+
+  </section>
+  <section id="documentation">
+    <h2><a class="anchor" href="#documentation">Documentation</a></h2>
+<p>The documentation site at <a href="https://allan-nava.github.io/traefik-go-sdk/">https://allan-nava.github.io/traefik-go-sdk/</a> is automatically generated from this <a class="pathlink" href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/README.md"><code>README.md</code></a> file using a custom Node.js build script. The site is a single-page application with responsive design and dark mode support.</p>
+<h3>Updating the Site</h3>
+<p>The site is built from <a class="pathlink" href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/README.md"><code>README.md</code></a> content organized by H2 headers (<code>## Section</code>). To update the documentation:</p>
+<ol>
+<li><strong>Edit README.md</strong> — Modify any section or add new H2 sections</li>
+<li><strong>Build locally</strong> — Run <code>npm run build</code> to generate <code>site/dist/index.html</code></li>
+<li><strong>Review</strong> — Open <code>site/dist/index.html</code> in your browser to preview</li>
+<li><strong>Commit &amp; Push</strong> — Standard Git workflow; CI will rebuild the site automatically</li>
+</ol>
+<h3>Site Architecture</h3>
+<ul>
+<li><p><strong><a class="pathlink" href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/site/build.mjs"><code>site/build.mjs</code></a></strong> — Node.js build script that:</p>
+<ul>
+<li>Parses <a class="pathlink" href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/README.md"><code>README.md</code></a> by H2 headers (each becomes a section)</li>
+<li>Converts markdown to HTML using the <code>marked</code> library</li>
+<li>Generates semantic HTML with JSON-LD structured data</li>
+<li>Links file paths in code blocks to GitHub repository</li>
+<li>Supports light/dark mode CSS variables</li>
+</ul>
+</li>
+<li><p><strong><a class="pathlink" href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/site/package.json"><code>site/package.json</code></a></strong> — Dependencies and build scripts</p>
+</li>
+<li><p><strong><code>site/dist/index.html</code></strong> — Generated single-page site (~10KB)</p>
+</li>
+<li><p><strong><a class="pathlink" href="https://github.com/Allan-Nava/traefik-go-sdk/blob/main/.github/workflows/pages.yml"><code>.github/workflows/pages.yml</code></a></strong> — GitHub Actions builds and deploys to <code>gh-pages</code> branch</p>
+</li>
+</ul>
+<h3>Deployment</h3>
+<p>The site is deployed to GitHub Pages via:</p>
+<pre><code class="language-bash">npm run build
+git subtree push --prefix site/dist origin gh-pages
+</code></pre>
+<p>This pushes only the <code>site/dist/</code> folder to the <code>gh-pages</code> orphan branch, which is served at the repository&#39;s GitHub Pages URL. The main repository history remains clean.</p>
 
   </section>
   <section id="contributing">
