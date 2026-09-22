@@ -1,0 +1,21 @@
+Formatting code...
+go: downloading github.com/go-resty/resty/v2 v2.10.0
+go: downloading golang.org/x/net v0.17.0
+traefik/api_entrypont.go
+traefik/api_http.go
+traefik/api_info.go
+traefik/api_tcp.go
+traefik/api_udp.go
+traefik/constants.go
+traefik/traefik.go
+Format complete ✓
+Running go vet...
+Vet check complete ✓
+Starting tests...
+?   	github.com/Allan-Nava/traefik-go-sdk/traefik	[no test files]
+Tests complete ✓
+Generating coverage report...
+	github.com/Allan-Nava/traefik-go-sdk/traefik		coverage: 0.0% of statements
+Coverage: 0.0%
+ERROR: Coverage 0.0% is below 80% threshold
+make: *** [coverage] Error 1

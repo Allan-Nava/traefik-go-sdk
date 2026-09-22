@@ -1,0 +1,27 @@
+#!/bin/bash
+# Pre-commit hook — TDD enforcement
+#
+# Install: git config core.hooksPath .githooks
+# This will run `make lint` before every commit
+
+set -euo pipefail
+
+echo "🧪 Running pre-commit checks (TDD)..."
+echo ""
+
+# Check if Makefile exists
+if [[ ! -f "Makefile" ]]; then
+    echo "ERROR: Makefile not found"
+    exit 1
+fi
+
+# Run lint (fmt + vet + test + coverage)
+if ! make lint; then
+    echo ""
+    echo "❌ Pre-commit checks failed. Fix errors and try again."
+    exit 1
+fi
+
+echo ""
+echo "✅ Pre-commit checks passed. Ready to commit."
+exit 0

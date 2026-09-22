@@ -1,14 +1,14 @@
 package traefik
 
 import (
-	"log"
 	"github.com/go-resty/resty/v2"
+	"log"
 )
 
 type traefikSdk struct {
-	BaseUrl        	string
-	restClient 		*resty.Client
-	debug      		bool
+	BaseUrl    string
+	restClient *resty.Client
+	debug      bool
 }
 
 type ITraefikClient interface {
@@ -37,7 +37,7 @@ type ITraefikClient interface {
 func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
 	// init haivision
 	traefikClient := &traefikSdk{
-		BaseUrl:        url,
+		BaseUrl:    url,
 		restClient: resty.New(),
 	}
 	//
@@ -64,10 +64,11 @@ func (o *traefikSdk) IsDebug() bool {
 // Resty Methods
 
 func (o *traefikSdk) restyPost(url string, body interface{}) (*resty.Response, error) {
+	fullURL := o.BaseUrl + url
 	resp, err := o.restClient.R().
 		SetHeader("Accept", "application/json").
 		SetBody(body).
-		Post(url)
+		Post(fullURL)
 
 	if err != nil {
 		return nil, err
@@ -77,16 +78,16 @@ func (o *traefikSdk) restyPost(url string, body interface{}) (*resty.Response, e
 
 // get request
 func (o *traefikSdk) restyGet(url string, queryParams map[string]string) (*resty.Response, error) {
+	fullURL := o.BaseUrl + url
 	resp, err := o.restClient.R().
 		SetQueryParams(queryParams).
-		Get(url)
+		Get(fullURL)
 	//
 	if err != nil {
 		return nil, err
 	}
 	return resp, nil
 }
-
 
 func (o *traefikSdk) debugPrint(data interface{}) {
 	if o.debug {
