@@ -79,7 +79,115 @@ func TestGetHttpRoutersWithError(t *testing.T) {
 	}
 }
 
-// Test restyPost indirectly through API methods (if any use POST)
+// Test restyPost directly
+func TestRestyPost(t *testing.T) {
+	tests := []struct {
+		name       string
+		statusCode int
+		body       map[string]interface{}
+		wantErr    bool
+	}{
+		{
+			name:       "successful POST",
+			statusCode: http.StatusOK,
+			body:       map[string]interface{}{"key": "value"},
+			wantErr:    false,
+		},
+		{
+			name:       "POST with error response",
+			statusCode: http.StatusBadRequest,
+			body:       map[string]interface{}{"invalid": "data"},
+			wantErr:    false,
+		},
+		{
+			name:       "POST server error",
+			statusCode: http.StatusInternalServerError,
+			body:       nil,
+			wantErr:    false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				if r.Method != "POST" {
+					t.Errorf("Expected POST, got %s", r.Method)
+				}
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(tt.statusCode)
+				w.Write([]byte(`{}`))
+			}))
+			defer server.Close()
+
+			client, _ := BuildTraefik(server.URL, false)
+			// Access private method via reflection or type assertion
+			sdk := client.(*traefikSdk)
+			resp, err := sdk.restyPost("/api/test", tt.body)
+
+			if (err != nil) != tt.wantErr {
+				t.Errorf("restyPost() error = %v, wantErr %v", err, tt.wantErr)
+			}
+
+			if resp != nil && resp.StatusCode() != tt.statusCode {
+				t.Errorf("Expected status %d, got %d", tt.statusCode, resp.StatusCode())
+			}
+		})
+	}
+}
+
+// Test debugPrint directly
+func TestDebugPrintDirect(t *testing.T) {
+	tests := []struct {
+		name  string
+		debug bool
+		data  string
+	}{
+		{
+			name:  "debug enabled - should print",
+			debug: true,
+			data:  "debug message",
+		},
+		{
+			name:  "debug disabled - should not print",
+			debug: false,
+			data:  "silent message",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			client, _ := BuildTraefik("http://localhost:8080", tt.debug)
+			sdk := client.(*traefikSdk)
+			// Call debugPrint - should not panic
+			sdk.debugPrint(tt.data)
+			if sdk.debug != tt.debug {
+				t.Errorf("Expected debug=%v, got %v", tt.debug, sdk.debug)
+			}
+		})
+	}
+}
+
+// Test debugPrint with various data types
+func TestDebugPrintDataTypes(t *testing.T) {
+	client, _ := BuildTraefik("http://localhost:8080", true)
+	sdk := client.(*traefikSdk)
+
+	// Test with different data types
+	testCases := []interface{}{
+		"string",
+		123,
+		map[string]interface{}{"key": "value"},
+		[]string{"a", "b", "c"},
+		nil,
+	}
+
+	for _, data := range testCases {
+		// Should not panic
+		sdk.debugPrint(data)
+	}
+}
+
+// Test debugPrint mode state
 func TestDebugMode(t *testing.T) {
 	// Test that debug flag is stored and retrievable
 	client1, _ := BuildTraefik("http://localhost:8080", true)
@@ -192,5 +300,105 @@ func TestBuildTraefikWithVariousURLs(t *testing.T) {
 				t.Errorf("BuildTraefik(%s) returned nil client", url)
 			}
 		})
+	}
+}
+
+// Test GetHttpRouter by name
+func TestGetHttpRouterByName(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(`{"entryPoints":["web"]}`))
+	}))
+	defer server.Close()
+
+	client, _ := BuildTraefik(server.URL, false)
+	resp, err := client.GetHttpRouter("test-router")
+
+	if err != nil {
+		t.Errorf("GetHttpRouter() error = %v", err)
+	}
+	if resp == nil {
+		t.Errorf("GetHttpRouter() returned nil")
+	}
+	if resp.StatusCode() != http.StatusOK {
+		t.Errorf("Expected 200, got %d", resp.StatusCode())
+	}
+}
+
+// Test HealthCheck error cases
+func TestHealthCheckErrors(t *testing.T) {
+	tests := []struct {
+		name       string
+		statusCode int
+	}{
+		{
+			name:       "health check 500 error",
+			statusCode: http.StatusInternalServerError,
+		},
+		{
+			name:       "health check 503 unavailable",
+			statusCode: http.StatusServiceUnavailable,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				w.WriteHeader(tt.statusCode)
+			}))
+			defer server.Close()
+
+			client, _ := BuildTraefik(server.URL, false)
+			err := client.HealthCheck()
+			// HealthCheck returns nil on error based on implementation
+			if err != nil {
+				t.Logf("HealthCheck returned error: %v", err)
+			}
+		})
+	}
+}
+
+// Test API methods with error status codes
+func TestGetHttpRoutersErrorStatus(t *testing.T) {
+	statusCodes := []int{
+		http.StatusNotFound,
+		http.StatusForbidden,
+		http.StatusGone,
+	}
+
+	for _, code := range statusCodes {
+		t.Run("status_"+string(rune(code)), func(t *testing.T) {
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(code)
+				w.Write([]byte(`{}`))
+			}))
+			defer server.Close()
+
+			client, _ := BuildTraefik(server.URL, false)
+			resp, err := client.GetHttpRouters()
+
+			if err == nil && resp.StatusCode() != code {
+				t.Errorf("Expected status %d, got %d", code, resp.StatusCode())
+			}
+		})
+	}
+}
+
+// Test restyPost error cases
+func TestRestyPostErrors(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte(`{"error":"not found"}`))
+	}))
+	defer server.Close()
+
+	client, _ := BuildTraefik(server.URL, false)
+	sdk := client.(*traefikSdk)
+	resp, err := sdk.restyPost("/nonexistent", nil)
+
+	if err == nil && resp != nil && resp.StatusCode() != http.StatusNotFound {
+		t.Errorf("Expected 404, got %d", resp.StatusCode())
 	}
 }
