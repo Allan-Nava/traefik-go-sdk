@@ -77,6 +77,10 @@ func main() {
 
 - **HTTP Routers:** `CreateHttpRouter(name, config)`, `UpdateHttpRouter(name, config)`, `DeleteHttpRouter(name)`
 - **HTTP Services:** `CreateHttpService(name, config)`, `UpdateHttpService(name, config)`, `DeleteHttpService(name)`
+- **TCP Routers:** `CreateTcpRouter(name, config)`, `UpdateTcpRouter(name, config)`, `DeleteTcpRouter(name)`
+- **TCP Services:** `CreateTcpService(name, config)`, `UpdateTcpService(name, config)`, `DeleteTcpService(name)`
+- **UDP Routers:** `CreateUdpRouter(name, config)`, `UpdateUdpRouter(name, config)`, `DeleteUdpRouter(name)`
+- **UDP Services:** `CreateUdpService(name, config)`, `UpdateUdpService(name, config)`, `DeleteUdpService(name)`
 
 ### Batch Operations
 

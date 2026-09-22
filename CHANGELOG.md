@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **TCP/UDP Write Operations** (v1.0.0 Feature #3)
+  - `CreateTcpRouter(name, config)` — Create new TCP router
+  - `UpdateTcpRouter(name, config)` — Update existing TCP router
+  - `DeleteTcpRouter(name)` — Delete TCP router
+  - `CreateTcpService(name, config)` — Create new TCP service
+  - `UpdateTcpService(name, config)` — Update existing TCP service
+  - `DeleteTcpService(name)` — Delete TCP service
+  - `CreateUdpRouter(name, config)` — Create new UDP router
+  - `UpdateUdpRouter(name, config)` — Update existing UDP router
+  - `DeleteUdpRouter(name)` — Delete UDP router
+  - `CreateUdpService(name, config)` — Create new UDP service
+  - `UpdateUdpService(name, config)` — Update existing UDP service
+  - `DeleteUdpService(name)` — Delete UDP service
+  - Full test coverage (12 test functions with 15+ test cases)
+  - Proper HTTP method handling (POST/PUT/DELETE)
+
 - **Batch Operations** (v1.0.0 Feature #2)
   - `ApplyConfiguration(config)` — Apply complete configuration
   - `ValidateConfiguration(config)` — Validate config before applying

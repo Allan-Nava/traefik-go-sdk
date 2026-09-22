@@ -40,6 +40,18 @@ type ITraefikClient interface {
 	GetConfiguration() (*resty.Response, error)
 	ValidateConfiguration(config interface{}) (*resty.Response, error)
 	ResetConfiguration() (*resty.Response, error)
+	CreateTcpRouter(name string, config interface{}) (*resty.Response, error)
+	UpdateTcpRouter(name string, config interface{}) (*resty.Response, error)
+	DeleteTcpRouter(name string) (*resty.Response, error)
+	CreateTcpService(name string, config interface{}) (*resty.Response, error)
+	UpdateTcpService(name string, config interface{}) (*resty.Response, error)
+	DeleteTcpService(name string) (*resty.Response, error)
+	CreateUdpRouter(name string, config interface{}) (*resty.Response, error)
+	UpdateUdpRouter(name string, config interface{}) (*resty.Response, error)
+	DeleteUdpRouter(name string) (*resty.Response, error)
+	CreateUdpService(name string, config interface{}) (*resty.Response, error)
+	UpdateUdpService(name string, config interface{}) (*resty.Response, error)
+	DeleteUdpService(name string) (*resty.Response, error)
 	//
 }
 
