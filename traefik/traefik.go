@@ -36,6 +36,10 @@ type ITraefikClient interface {
 	CreateHttpService(name string, config interface{}) (*resty.Response, error)
 	UpdateHttpService(name string, config interface{}) (*resty.Response, error)
 	DeleteHttpService(name string) (*resty.Response, error)
+	ApplyConfiguration(config interface{}) (*resty.Response, error)
+	GetConfiguration() (*resty.Response, error)
+	ValidateConfiguration(config interface{}) (*resty.Response, error)
+	ResetConfiguration() (*resty.Response, error)
 	//
 }
 

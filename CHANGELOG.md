@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Batch Operations** (v1.0.0 Feature #2)
+  - `ApplyConfiguration(config)` — Apply complete configuration
+  - `ValidateConfiguration(config)` — Validate config before applying
+  - `GetConfiguration()` — Retrieve current configuration
+  - `ResetConfiguration()` — Reset to default state
+  - Full test coverage (4 test functions with 9+ test cases)
+  - Supports HTTP, TCP, UDP routers/services/middlewares in single batch
+
 - **Configuration Write Methods** (v1.0.0 Feature #1)
   - `CreateHttpRouter(name, config)` — Create new HTTP router
   - `UpdateHttpRouter(name, config)` — Update existing HTTP router
