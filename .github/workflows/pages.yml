@@ -31,7 +31,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to gh-pages
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git subtree push --prefix site/dist origin gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/dist
+          cname: allan-nava.github.io/traefik-go-sdk
