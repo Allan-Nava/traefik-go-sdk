@@ -70,9 +70,9 @@ type ITraefikClient interface {
 	//
 }
 
-// Builder is used to build a new haivision client
+// Builder is used to build a new Traefik client
 func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
-	// init haivision
+	// init Traefik SDK
 	traefikClient := &traefikSdk{
 		BaseUrl:    url,
 		restClient: resty.New(),
@@ -87,11 +87,8 @@ func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
 }
 
 func (o *traefikSdk) HealthCheck() error {
-	_, err := o.restyGet(o.BaseUrl, nil)
-	if err != nil {
-		return nil
-	}
-	return nil
+	_, err := o.restyGet("/ping", nil)
+	return err
 }
 
 func (o *traefikSdk) IsDebug() bool {

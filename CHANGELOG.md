@@ -107,6 +107,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **HealthCheck() error handling** (ID-003)
+  - Previously returned `nil, nil` always (masked connection errors)
+  - Now properly returns errors from `/ping` endpoint
+  - Allows callers to detect connectivity issues
+
+- **"haivision" typo** (ID-004)
+  - Fixed BuildTraefik() comment from "haivision client" to "Traefik client"
+  - Fixed init comment from "init haivision" to "init Traefik SDK"
+
 - **restyGet/restyPost URL construction**: Now properly concatenates `BaseUrl` + path
   - Previously, methods passed only path (e.g., `/api/http/routers`) without BaseUrl
   - Now correctly constructs full URL for HTTP requests
