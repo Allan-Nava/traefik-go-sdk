@@ -193,6 +193,23 @@ func main() {
 <ul>
 <li><strong>HTTP Routers:</strong> <code>CreateHttpRouter(name, config)</code>, <code>UpdateHttpRouter(name, config)</code>, <code>DeleteHttpRouter(name)</code></li>
 <li><strong>HTTP Services:</strong> <code>CreateHttpService(name, config)</code>, <code>UpdateHttpService(name, config)</code>, <code>DeleteHttpService(name)</code></li>
+<li><strong>TCP Routers:</strong> <code>CreateTcpRouter(name, config)</code>, <code>UpdateTcpRouter(name, config)</code>, <code>DeleteTcpRouter(name)</code></li>
+<li><strong>TCP Services:</strong> <code>CreateTcpService(name, config)</code>, <code>UpdateTcpService(name, config)</code>, <code>DeleteTcpService(name)</code></li>
+<li><strong>UDP Routers:</strong> <code>CreateUdpRouter(name, config)</code>, <code>UpdateUdpRouter(name, config)</code>, <code>DeleteUdpRouter(name)</code></li>
+<li><strong>UDP Services:</strong> <code>CreateUdpService(name, config)</code>, <code>UpdateUdpService(name, config)</code>, <code>DeleteUdpService(name)</code></li>
+<li><strong>HTTP Middlewares:</strong> <code>CreateHttpMiddleware(name, config)</code>, <code>UpdateHttpMiddleware(name, config)</code>, <code>DeleteHttpMiddleware(name)</code></li>
+<li><strong>TCP Middlewares:</strong> <code>CreateTcpMiddleware(name, config)</code>, <code>UpdateTcpMiddleware(name, config)</code>, <code>DeleteTcpMiddleware(name)</code></li>
+</ul>
+<h3>Batch Operations</h3>
+<ul>
+<li><strong>Configuration Management:</strong> <code>ApplyConfiguration(config)</code>, <code>ValidateConfiguration(config)</code>, <code>GetConfiguration()</code>, <code>ResetConfiguration()</code></li>
+<li><strong>Configuration Export/Import:</strong> <code>ExportConfiguration()</code>, <code>ImportConfiguration(config)</code>, <code>BackupConfiguration(timestamp)</code>, <code>RestoreConfiguration(backup)</code></li>
+</ul>
+<h3>Advanced Filtering</h3>
+<ul>
+<li><strong>Router Queries:</strong> <code>GetHttpRoutersByRule(rule)</code>, <code>GetTcpRoutersByEntryPoint(ep)</code>, <code>GetUdpRoutersByEntryPoint(ep)</code></li>
+<li><strong>Service Queries:</strong> <code>GetServicesByRouter(name)</code> — Get services for a specific router</li>
+<li><strong>Middleware Queries:</strong> <code>GetHttpMiddlewareByType(type)</code> — Get middlewares by type (basicAuth, ipWhiteList, etc.)</li>
 </ul>
 <h3>Batch Operations</h3>
 <ul>
