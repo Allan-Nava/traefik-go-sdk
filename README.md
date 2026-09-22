@@ -81,6 +81,8 @@ func main() {
 - **TCP Services:** `CreateTcpService(name, config)`, `UpdateTcpService(name, config)`, `DeleteTcpService(name)`
 - **UDP Routers:** `CreateUdpRouter(name, config)`, `UpdateUdpRouter(name, config)`, `DeleteUdpRouter(name)`
 - **UDP Services:** `CreateUdpService(name, config)`, `UpdateUdpService(name, config)`, `DeleteUdpService(name)`
+- **HTTP Middlewares:** `CreateHttpMiddleware(name, config)`, `UpdateHttpMiddleware(name, config)`, `DeleteHttpMiddleware(name)`
+- **TCP Middlewares:** `CreateTcpMiddleware(name, config)`, `UpdateTcpMiddleware(name, config)`, `DeleteTcpMiddleware(name)`
 
 ### Batch Operations
 

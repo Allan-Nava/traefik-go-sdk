@@ -52,6 +52,12 @@ type ITraefikClient interface {
 	CreateUdpService(name string, config interface{}) (*resty.Response, error)
 	UpdateUdpService(name string, config interface{}) (*resty.Response, error)
 	DeleteUdpService(name string) (*resty.Response, error)
+	CreateHttpMiddleware(name string, config interface{}) (*resty.Response, error)
+	UpdateHttpMiddleware(name string, config interface{}) (*resty.Response, error)
+	DeleteHttpMiddleware(name string) (*resty.Response, error)
+	CreateTcpMiddleware(name string, config interface{}) (*resty.Response, error)
+	UpdateTcpMiddleware(name string, config interface{}) (*resty.Response, error)
+	DeleteTcpMiddleware(name string) (*resty.Response, error)
 	//
 }
 

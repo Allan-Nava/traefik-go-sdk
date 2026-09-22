@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Middleware Management** (v1.0.0 Feature #4)
+  - `CreateHttpMiddleware(name, config)` — Create new HTTP middleware
+  - `UpdateHttpMiddleware(name, config)` — Update existing HTTP middleware
+  - `DeleteHttpMiddleware(name)` — Delete HTTP middleware
+  - `CreateTcpMiddleware(name, config)` — Create new TCP middleware
+  - `UpdateTcpMiddleware(name, config)` — Update existing TCP middleware
+  - `DeleteTcpMiddleware(name)` — Delete TCP middleware
+  - Full test coverage (6 test functions with 8+ test cases)
+  - Proper HTTP method handling (POST/PUT/DELETE)
+
 - **TCP/UDP Write Operations** (v1.0.0 Feature #3)
   - `CreateTcpRouter(name, config)` — Create new TCP router
   - `UpdateTcpRouter(name, config)` — Update existing TCP router
