@@ -1,0 +1,14 @@
+{
+  "name": "traefik-go-sdk-site",
+  "version": "0.2.0",
+  "description": "GitHub Pages site generator for traefik-go-sdk",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:out": "node build.mjs --out site/dist",
+    "watch": "node --watch build.mjs"
+  },
+  "dependencies": {
+    "marked": "^9.1.0"
+  }
+}

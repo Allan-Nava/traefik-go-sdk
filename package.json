@@ -1,0 +1,15 @@
+{
+  "name": "traefik-go-sdk",
+  "version": "0.2.0",
+  "description": "Go SDK for Traefik reverse proxy and load balancer",
+  "homepage": "https://github.com/Allan-Nava/traefik-go-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Allan-Nava/traefik-go-sdk.git"
+  },
+  "author": "Allan Nava",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
