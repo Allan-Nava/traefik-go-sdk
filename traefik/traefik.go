@@ -58,6 +58,11 @@ type ITraefikClient interface {
 	CreateTcpMiddleware(name string, config interface{}) (*resty.Response, error)
 	UpdateTcpMiddleware(name string, config interface{}) (*resty.Response, error)
 	DeleteTcpMiddleware(name string) (*resty.Response, error)
+	GetHttpRoutersByRule(rule string) (*resty.Response, error)
+	GetTcpRoutersByEntryPoint(entryPoint string) (*resty.Response, error)
+	GetUdpRoutersByEntryPoint(entryPoint string) (*resty.Response, error)
+	GetServicesByRouter(routerName string) (*resty.Response, error)
+	GetHttpMiddlewareByType(middlewareType string) (*resty.Response, error)
 	//
 }
 

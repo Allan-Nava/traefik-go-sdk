@@ -91,6 +91,12 @@ func main() {
 - **Configuration Retrieval:** `GetConfiguration()` — Get current raw data
 - **Configuration Reset:** `ResetConfiguration()` — Reset to default state
 
+### Advanced Filtering
+
+- **Router Queries:** `GetHttpRoutersByRule(rule)`, `GetTcpRoutersByEntryPoint(ep)`, `GetUdpRoutersByEntryPoint(ep)`
+- **Service Queries:** `GetServicesByRouter(name)` — Get services for a specific router
+- **Middleware Queries:** `GetHttpMiddlewareByType(type)` — Get middlewares by type (basicAuth, ipWhiteList, etc.)
+
 ### Utility Methods
 
 - **Health Check:** `HealthCheck()` — Verify connectivity to Traefik API
