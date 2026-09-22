@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# Generated site files (deployed to gh-pages via git subtree)
+site/dist/
