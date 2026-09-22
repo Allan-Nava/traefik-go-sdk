@@ -9,7 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Comprehensive unit test suite (50+ test cases, 71.1% coverage)
+- **Configuration Write Methods** (v1.0.0 Feature #1)
+  - `CreateHttpRouter(name, config)` — Create new HTTP router
+  - `UpdateHttpRouter(name, config)` — Update existing HTTP router
+  - `DeleteHttpRouter(name)` — Delete HTTP router
+  - `CreateHttpService(name, config)` — Create new HTTP service
+  - `UpdateHttpService(name, config)` — Update existing HTTP service
+  - `DeleteHttpService(name)` — Delete HTTP service
+  - Full test coverage (6 new test functions with 20+ test cases)
+  - Proper HTTP method handling (POST/PUT/DELETE)
+
+- Comprehensive unit test suite (80+ test cases, 84.3% coverage)
   - Table-driven tests for all public API methods
   - Edge case coverage (HTTP errors, network failures, large payloads)
   - Mock HTTP server testing with `httptest`

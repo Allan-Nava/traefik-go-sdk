@@ -18,23 +18,70 @@ go get github.com/Allan-Nava/traefik-go-sdk
 ```
 
 ## Usage
-Here is a simple example demonstrating how to use the Traefik Go SDK to update Traefik's dynamic configuration:
-```go
 
+Here is a simple example demonstrating how to use the Traefik Go SDK:
+
+```go
 import (
-	"fmt"
-	"github.com/Allan-Nava/traefik-go-sdk"
+	"github.com/Allan-Nava/traefik-go-sdk/traefik"
 )
 
 func main() {
 	// Create a Traefik client
-	client, err := traefik.BuildTraefik("http://traefik-api-url")
+	client, err := traefik.BuildTraefik("http://localhost:8080", false)
 	if err != nil {
 		panic(err)
 	}
-}
 
+	// Read router configuration
+	routers, _ := client.GetHttpRouters()
+	println("Routers:", routers.Status())
+
+	// Create a new router
+	newRouter := map[string]interface{}{
+		"entryPoints": []string{"web"},
+		"service":     "my-service",
+		"rule":        "Host(`example.com`)",
+	}
+	resp, _ := client.CreateHttpRouter("my-router", newRouter)
+	println("Created:", resp.Status())
+
+	// Update router
+	updatedRouter := map[string]interface{}{
+		"entryPoints": []string{"web", "websecure"},
+		"service":     "my-service",
+		"rule":        "Host(`example.com`)",
+	}
+	client.UpdateHttpRouter("my-router", updatedRouter)
+
+	// Delete router
+	client.DeleteHttpRouter("my-router")
+}
 ```
+
+## API Methods
+
+### Read Operations
+
+- **HTTP Routers:** `GetHttpRouters()`, `GetHttpRouter(name)`
+- **HTTP Services:** `GetHttpServices()`
+- **HTTP Middlewares:** `GetHttpMiddlewares()`
+- **TCP Routers:** `GetTcpRouters()`, `GetTcpRouter(name)`
+- **TCP Services:** `GetTcpServices()`
+- **UDP Routers:** `GetUdpRouters()`, `GetUdpRouter(name)`
+- **UDP Services:** `GetUdpServices()`, `GetUdpService(name)`
+- **Entry Points:** `GetEntrypoints()`
+- **API Info:** `GetApiOverview()`, `GetApiVersion()`, `GetApiRawData()`
+
+### Write Operations
+
+- **HTTP Routers:** `CreateHttpRouter(name, config)`, `UpdateHttpRouter(name, config)`, `DeleteHttpRouter(name)`
+- **HTTP Services:** `CreateHttpService(name, config)`, `UpdateHttpService(name, config)`, `DeleteHttpService(name)`
+
+### Utility Methods
+
+- **Health Check:** `HealthCheck()` — Verify connectivity to Traefik API
+- **Debug Mode:** `IsDebug()` — Check if debug logging is enabled
 
 For more detailed examples and [API documentation](https://doc.traefik.io/traefik/operations/api/), refer to the GoDoc.
 

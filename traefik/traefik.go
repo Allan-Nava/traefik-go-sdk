@@ -30,6 +30,12 @@ type ITraefikClient interface {
 	GetApiOverview() (*resty.Response, error)
 	GetApiRawData() (*resty.Response, error)
 	GetApiVersion() (*resty.Response, error)
+	CreateHttpRouter(name string, config interface{}) (*resty.Response, error)
+	UpdateHttpRouter(name string, config interface{}) (*resty.Response, error)
+	DeleteHttpRouter(name string) (*resty.Response, error)
+	CreateHttpService(name string, config interface{}) (*resty.Response, error)
+	UpdateHttpService(name string, config interface{}) (*resty.Response, error)
+	DeleteHttpService(name string) (*resty.Response, error)
 	//
 }
 
