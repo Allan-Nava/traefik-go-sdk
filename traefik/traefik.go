@@ -63,6 +63,10 @@ type ITraefikClient interface {
 	GetUdpRoutersByEntryPoint(entryPoint string) (*resty.Response, error)
 	GetServicesByRouter(routerName string) (*resty.Response, error)
 	GetHttpMiddlewareByType(middlewareType string) (*resty.Response, error)
+	ExportConfiguration() (*resty.Response, error)
+	ImportConfiguration(config interface{}) (*resty.Response, error)
+	BackupConfiguration(timestamp string) (*resty.Response, error)
+	RestoreConfiguration(backup interface{}) (*resty.Response, error)
 	//
 }
 

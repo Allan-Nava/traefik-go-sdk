@@ -86,10 +86,8 @@ func main() {
 
 ### Batch Operations
 
-- **Configuration Management:** `ApplyConfiguration(config)` — Apply complete config (HTTP + TCP + UDP)
-- **Configuration Validation:** `ValidateConfiguration(config)` — Validate before applying
-- **Configuration Retrieval:** `GetConfiguration()` — Get current raw data
-- **Configuration Reset:** `ResetConfiguration()` — Reset to default state
+- **Configuration Management:** `ApplyConfiguration(config)`, `ValidateConfiguration(config)`, `GetConfiguration()`, `ResetConfiguration()`
+- **Configuration Export/Import:** `ExportConfiguration()`, `ImportConfiguration(config)`, `BackupConfiguration(timestamp)`, `RestoreConfiguration(backup)`
 
 ### Advanced Filtering
 

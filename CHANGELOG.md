@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Configuration Export/Import** (v1.0.0 Feature #6)
+  - `ExportConfiguration()` — Export current configuration as JSON
+  - `ImportConfiguration(config)` — Import configuration from JSON
+  - `BackupConfiguration(timestamp)` — Create timestamped backup
+  - `RestoreConfiguration(backup)` — Restore from backup file
+  - Full test coverage (4 test functions)
+  - Supports complete configuration round-trip (export → backup → restore)
+
 - **Advanced Filtering** (v1.0.0 Feature #5)
   - `GetHttpRoutersByRule(rule)` — Query HTTP routers by rule pattern
   - `GetTcpRoutersByEntryPoint(entryPoint)` — Query TCP routers by entry point
