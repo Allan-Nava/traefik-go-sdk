@@ -9,6 +9,6 @@
     "watch": "node --watch build.mjs"
   },
   "dependencies": {
-    "marked": "^9.1.0"
+    "marked": "^18.0.0"
   }
 }
