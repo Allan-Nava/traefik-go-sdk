@@ -194,6 +194,13 @@ func main() {
 <li><strong>HTTP Routers:</strong> <code>CreateHttpRouter(name, config)</code>, <code>UpdateHttpRouter(name, config)</code>, <code>DeleteHttpRouter(name)</code></li>
 <li><strong>HTTP Services:</strong> <code>CreateHttpService(name, config)</code>, <code>UpdateHttpService(name, config)</code>, <code>DeleteHttpService(name)</code></li>
 </ul>
+<h3>Batch Operations</h3>
+<ul>
+<li><strong>Configuration Management:</strong> <code>ApplyConfiguration(config)</code> — Apply complete config (HTTP + TCP + UDP)</li>
+<li><strong>Configuration Validation:</strong> <code>ValidateConfiguration(config)</code> — Validate before applying</li>
+<li><strong>Configuration Retrieval:</strong> <code>GetConfiguration()</code> — Get current raw data</li>
+<li><strong>Configuration Reset:</strong> <code>ResetConfiguration()</code> — Reset to default state</li>
+</ul>
 <h3>Utility Methods</h3>
 <ul>
 <li><strong>Health Check:</strong> <code>HealthCheck()</code> — Verify connectivity to Traefik API</li>
