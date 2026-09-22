@@ -77,6 +77,23 @@ func main() {
 
 - **HTTP Routers:** `CreateHttpRouter(name, config)`, `UpdateHttpRouter(name, config)`, `DeleteHttpRouter(name)`
 - **HTTP Services:** `CreateHttpService(name, config)`, `UpdateHttpService(name, config)`, `DeleteHttpService(name)`
+- **TCP Routers:** `CreateTcpRouter(name, config)`, `UpdateTcpRouter(name, config)`, `DeleteTcpRouter(name)`
+- **TCP Services:** `CreateTcpService(name, config)`, `UpdateTcpService(name, config)`, `DeleteTcpService(name)`
+- **UDP Routers:** `CreateUdpRouter(name, config)`, `UpdateUdpRouter(name, config)`, `DeleteUdpRouter(name)`
+- **UDP Services:** `CreateUdpService(name, config)`, `UpdateUdpService(name, config)`, `DeleteUdpService(name)`
+- **HTTP Middlewares:** `CreateHttpMiddleware(name, config)`, `UpdateHttpMiddleware(name, config)`, `DeleteHttpMiddleware(name)`
+- **TCP Middlewares:** `CreateTcpMiddleware(name, config)`, `UpdateTcpMiddleware(name, config)`, `DeleteTcpMiddleware(name)`
+
+### Batch Operations
+
+- **Configuration Management:** `ApplyConfiguration(config)`, `ValidateConfiguration(config)`, `GetConfiguration()`, `ResetConfiguration()`
+- **Configuration Export/Import:** `ExportConfiguration()`, `ImportConfiguration(config)`, `BackupConfiguration(timestamp)`, `RestoreConfiguration(backup)`
+
+### Advanced Filtering
+
+- **Router Queries:** `GetHttpRoutersByRule(rule)`, `GetTcpRoutersByEntryPoint(ep)`, `GetUdpRoutersByEntryPoint(ep)`
+- **Service Queries:** `GetServicesByRouter(name)` — Get services for a specific router
+- **Middleware Queries:** `GetHttpMiddlewareByType(type)` — Get middlewares by type (basicAuth, ipWhiteList, etc.)
 
 ### Batch Operations
 

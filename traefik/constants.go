@@ -11,7 +11,7 @@ const (
 	TCP_SERVICES    = "/api/tcp/services"    // --> /api/tcp/services	Lists all the TCP services information.
 	TCP_MIDDLEWARES = "/api/tcp/middlewares" // --> /api/tcp/middlewares	Lists all the TCP middlewares information.
 	UDP_ROUTERS     = "/api/udp/routers"     // --> //api/udp/routers	Lists all the UDP routers information.
-	UDP_SERVICES    = "/api/udp/service"     // --> /api/udp/services	Lists all the UDP services information.
+	UDP_SERVICES    = "/api/udp/services"    // --> /api/udp/services	Lists all the UDP services information.
 	ENTRYPOINTS     = "/api/entrypoints"     // --> /api/entrypoints	Lists all the entry points information.
 	OVERVIEW        = "/api/overview"        // --> /api/overview Returns statistic information about http and tcp as well as enabled features and providers.
 	//

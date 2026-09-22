@@ -40,12 +40,39 @@ type ITraefikClient interface {
 	GetConfiguration() (*resty.Response, error)
 	ValidateConfiguration(config interface{}) (*resty.Response, error)
 	ResetConfiguration() (*resty.Response, error)
+	CreateTcpRouter(name string, config interface{}) (*resty.Response, error)
+	UpdateTcpRouter(name string, config interface{}) (*resty.Response, error)
+	DeleteTcpRouter(name string) (*resty.Response, error)
+	CreateTcpService(name string, config interface{}) (*resty.Response, error)
+	UpdateTcpService(name string, config interface{}) (*resty.Response, error)
+	DeleteTcpService(name string) (*resty.Response, error)
+	CreateUdpRouter(name string, config interface{}) (*resty.Response, error)
+	UpdateUdpRouter(name string, config interface{}) (*resty.Response, error)
+	DeleteUdpRouter(name string) (*resty.Response, error)
+	CreateUdpService(name string, config interface{}) (*resty.Response, error)
+	UpdateUdpService(name string, config interface{}) (*resty.Response, error)
+	DeleteUdpService(name string) (*resty.Response, error)
+	CreateHttpMiddleware(name string, config interface{}) (*resty.Response, error)
+	UpdateHttpMiddleware(name string, config interface{}) (*resty.Response, error)
+	DeleteHttpMiddleware(name string) (*resty.Response, error)
+	CreateTcpMiddleware(name string, config interface{}) (*resty.Response, error)
+	UpdateTcpMiddleware(name string, config interface{}) (*resty.Response, error)
+	DeleteTcpMiddleware(name string) (*resty.Response, error)
+	GetHttpRoutersByRule(rule string) (*resty.Response, error)
+	GetTcpRoutersByEntryPoint(entryPoint string) (*resty.Response, error)
+	GetUdpRoutersByEntryPoint(entryPoint string) (*resty.Response, error)
+	GetServicesByRouter(routerName string) (*resty.Response, error)
+	GetHttpMiddlewareByType(middlewareType string) (*resty.Response, error)
+	ExportConfiguration() (*resty.Response, error)
+	ImportConfiguration(config interface{}) (*resty.Response, error)
+	BackupConfiguration(timestamp string) (*resty.Response, error)
+	RestoreConfiguration(backup interface{}) (*resty.Response, error)
 	//
 }
 
-// Builder is used to build a new haivision client
+// Builder is used to build a new Traefik client
 func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
-	// init haivision
+	// init Traefik SDK
 	traefikClient := &traefikSdk{
 		BaseUrl:    url,
 		restClient: resty.New(),
@@ -60,11 +87,8 @@ func BuildTraefik(url string, debug bool) (ITraefikClient, error) {
 }
 
 func (o *traefikSdk) HealthCheck() error {
-	_, err := o.restyGet(o.BaseUrl, nil)
-	if err != nil {
-		return nil
-	}
-	return nil
+	_, err := o.restyGet("/ping", nil)
+	return err
 }
 
 func (o *traefikSdk) IsDebug() bool {
