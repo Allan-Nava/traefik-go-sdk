@@ -78,6 +78,13 @@ func main() {
 - **HTTP Routers:** `CreateHttpRouter(name, config)`, `UpdateHttpRouter(name, config)`, `DeleteHttpRouter(name)`
 - **HTTP Services:** `CreateHttpService(name, config)`, `UpdateHttpService(name, config)`, `DeleteHttpService(name)`
 
+### Batch Operations
+
+- **Configuration Management:** `ApplyConfiguration(config)` — Apply complete config (HTTP + TCP + UDP)
+- **Configuration Validation:** `ValidateConfiguration(config)` — Validate before applying
+- **Configuration Retrieval:** `GetConfiguration()` — Get current raw data
+- **Configuration Reset:** `ResetConfiguration()` — Reset to default state
+
 ### Utility Methods
 
 - **Health Check:** `HealthCheck()` — Verify connectivity to Traefik API
